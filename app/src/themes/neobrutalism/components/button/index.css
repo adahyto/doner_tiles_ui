@@ -1,0 +1,9 @@
+.dnr-btn {
+    border: var(--border--std);
+    border-color: var(--accent-color);
+    background-color: transparent;
+}
+
+.dnr-btn:hover {
+    box-shadow: var(--shadow--std);
+}

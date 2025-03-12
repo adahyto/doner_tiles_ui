@@ -1,0 +1,5 @@
+:root {
+    --border-radius--std: 50px;
+    --shadow--std:  10px 10px 30px #a7a7a7, -10px -10px 30px #e7e7e7;
+    --shadow--mvd:  12px 12px 25px #a7a7a7, -12px -12px 25px #e7e7e7;
+}

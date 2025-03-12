@@ -1,0 +1,13 @@
+.dnr-tile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 40px;
+}
+
+@media(min-width: 856px) {
+    .dnr-tile-actions {
+        flex-direction: row;
+        justify-content: end;
+    }
+}

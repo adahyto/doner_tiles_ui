@@ -1,0 +1,5 @@
+.dnr-tile {
+    border: var(--border--std);
+    border-color: var(--accent-color);
+    box-shadow: 5px 5px 5px var(--accent-color);
+}

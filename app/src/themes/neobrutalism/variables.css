@@ -1,0 +1,6 @@
+:root {
+    --border--std: 2px solid var(--accent-color);
+    --border--accent: 2px solid var(--accent-color);
+    --shadow--std: 5px 5px 5px var(--accent-color);
+    --shadow--accent:  5px 5px 5px var(--accent-color)
+}

@@ -1,0 +1,10 @@
+.dnr-btn--accent {
+    border: var(--border--accent);
+    background-color: var(--accent-color);
+}
+
+.dnr-btn--accent:hover {
+    border-right: 2px solid var(--accent-color--contrast);
+    border-bottom: 2px solid var(--accent-color--contrast);
+    box-shadow: 5px 5px 5px var(--accent-color);
+}

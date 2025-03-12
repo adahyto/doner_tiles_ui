@@ -1,0 +1,4 @@
+.dnr-tile {
+    border-radius: var(--border-radius--std);
+    box-shadow: var(--shadow--std);
+}

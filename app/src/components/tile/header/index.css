@@ -1,0 +1,8 @@
+.dnr-tile-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.dnr-tile-header *:not(:first-child) {
+    padding-top: 10px;
+}

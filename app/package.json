@@ -1,0 +1,12 @@
+{
+  "name": "doner_tiles_ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node doner.js"
+  },
+  "author": "https://github.com/adahyto",
+  "license": "ISC"
+}

@@ -1,0 +1,11 @@
+.dnr-btn {
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius--std);
+    box-shadow: var(--shadow--std);
+}
+
+.dnr-btn:hover {
+    box-shadow: var(--shadow--mvd);
+    filter: brightness(1.05);
+}

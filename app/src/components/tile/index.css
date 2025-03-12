@@ -1,0 +1,12 @@
+.dnr-tile {
+    padding: 40px;
+
+    h2, h3, p {
+        margin: 0;
+    }
+}
+
+.dnr-tile-content {
+    line-height: 1.6em;
+    padding-top: 20px;
+}

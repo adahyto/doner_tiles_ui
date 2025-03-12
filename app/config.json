@@ -1,0 +1,15 @@
+{
+  "theme": "neobrutalism",
+  "components": [
+    "tile",
+    "tile/header",
+    "tile/image",
+    "tile/actions",
+    "button",
+    "button/accent"
+  ],
+  "colors": {
+    "accent": "#122446",
+    "accentContrast": "#ffffff"
+  }
+}
