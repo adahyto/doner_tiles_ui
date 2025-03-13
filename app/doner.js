@@ -83,14 +83,14 @@ export default class DonerClass {
         (block.match(/--[\w-]+\s*:\s*[^;]+;/g) || []).map((variable) => {
           const [key, value] = variable
             .split(":")
-            .map((v) => v.trim().replace(";", ""));
+            .map((v) => v.replace(";", ""));
           return [key, value];
         })
       )
     );
 
     return (
-      styles.replace(/:root\s*{[^}]*}/g, "").trim() +
+      styles.replace(/:root\s*{[^}]*}/g, "") +
       `\n\n:root{${Object.entries(mergedVars)
         .map(([k, v]) => `${k}:${v};`)
         .join("")}}`
