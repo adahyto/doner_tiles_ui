@@ -2,8 +2,3 @@
     background-color: var(--accent-color);
     color: var(--accent-color--contrast);
 }
-
-.dnr-btn--accent:hover {
-    box-shadow: var(--shadow--mvd);
-    filter: brightness(1.06);
-}
