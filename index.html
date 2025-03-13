@@ -180,7 +180,7 @@ $npm run start
 
       const colorContrastChange = document.getElementById("colorContrastChange");
       colorContrastChange.addEventListener("change", () => {
-        changeCSSString(`--accent-color:${colorContrastChange.defaultValue}`);
+        changeCSSString(`--accent-color--contrast:${colorContrastChange.defaultValue}`);
         document.documentElement.style.setProperty(
           `--accent-color--contrast`,
           colorContrastChange.value
