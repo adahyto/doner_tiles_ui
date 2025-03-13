@@ -11,8 +11,10 @@ export default class DonerClass {
   get #cssFiles() {
     const { components, theme } = this.#configJson;
     return [
-      components && this.#componentsCss(components, theme),
-      theme && this.#readFile(`src/themes/${theme}/variables.css`),
+      components && this.#componentsCss(components),
+      theme &&
+        this.#readFile(`src/themes/${theme}/variables.css`) &&
+        this.#componentsCss(components, theme),
     ]
       .filter(Boolean)
       .join("");
