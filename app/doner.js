@@ -12,9 +12,8 @@ export default class DonerClass {
     const { components, theme } = this.#configJson;
     return [
       components && this.#componentsCss(components),
-      theme &&
-        this.#readFile(`src/themes/${theme}/variables.css`) &&
-        this.#componentsCss(components, theme),
+      theme && this.#readFile(`src/themes/${theme}/variables.css`),
+      theme && this.#componentsCss(components, theme),
     ]
       .filter(Boolean)
       .join("");
@@ -78,18 +77,20 @@ export default class DonerClass {
   #mergeRootBlocks(styles) {
     const rootBlocks = styles.match(/:root\s*{[^}]*}/g);
     if (!rootBlocks) return styles;
+
     const mergedVars = Object.fromEntries(
       rootBlocks.flatMap((block) =>
         (block.match(/--[\w-]+\s*:\s*[^;]+;/g) || []).map((variable) => {
           const [key, value] = variable
             .split(":")
-            .map((v) => v.replace(";", ""));
+            .map((v) => v.trim().replace(";", ""));
           return [key, value];
         })
       )
     );
+
     return (
-      styles.replace(/:root\s*{[^}]*}/g, "") +
+      styles.replace(/:root\s*{[^}]*}/g, "").trim() +
       `\n\n:root{${Object.entries(mergedVars)
         .map(([k, v]) => `${k}:${v};`)
         .join("")}}`
