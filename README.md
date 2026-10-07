@@ -44,3 +44,11 @@ Requires Node.js, no dependencies.
 3. The minified file is written to `app/_dist/<theme>-doner-tiles.css`.
 
 To add a theme, create `app/src/themes/<name>/variables.css` and component overrides in `app/src/themes/<name>/components/<component>/index.css`.
+
+## Development
+
+```sh
+cd app
+npm run build:styles   # rebuild styles/ for every theme (components and colors from config.json)
+npm test               # checks that styles/ is up to date and the generator works
+```
