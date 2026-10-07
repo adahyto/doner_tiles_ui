@@ -21,6 +21,7 @@ const CONTRAST_PAIRS = [
   ["--dnr-text", "--dnr-surface"],
 ];
 
+const HOVER_PRESET = /\.dnr-btn\[data-dnr-hover="([\w-]+)"\]\s*{([^}]*)}/g;
 const SCHEME_BLOCK = /\[data-dnr-scheme="(light|dark)"\]\s*{([^}]*)}/g;
 const HEX = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
 
@@ -70,6 +71,12 @@ export function listThemes(root = APP_DIR) {
     .sort();
 }
 
+// hover presets of the button component, in the order of the file
+export function listHoverPresets(root = APP_DIR) {
+  const css = fs.readFileSync(path.join(root, "src/components/button/index.css"), "utf8");
+  return [...css.matchAll(HOVER_PRESET)].map(([, name]) => name);
+}
+
 export function listComponents(root = APP_DIR) {
   return fs
     .readdirSync(path.join(root, "src/components"), { recursive: true })
@@ -104,7 +111,7 @@ export default class DonerClass {
     this.warnings = [];
     const { components, themes } = this.#configJson;
     const css =
-      components.map((c) => this.#readFile(`src/components/${c}/index.css`)).join("") +
+      components.map((c) => this.#componentCss(c)).join("") +
       themes.map((theme, i) => this.#themeCss(theme, i === 0)).join("");
     // a layer lets any unlayered rule of the page override the library without specificity hacks
     return minifyCss(`@layer doner{${css}}`);
@@ -173,8 +180,22 @@ export default class DonerClass {
     }
   }
 
+  #componentCss(component) {
+    const css = this.#readFile(`src/components/${component}/index.css`);
+    const { hover } = this.#configJson;
+    if (component !== "button" || !hover) return css;
+    // the chosen preset's values become the button's defaults; data-dnr-hover still overrides them
+    const preset = [...css.matchAll(HOVER_PRESET)].find(([, name]) => name === hover);
+    const values = parseDeclarations(preset[2]);
+    return css.replace(/^\.dnr-btn\s*{[^}]*}/m, (block) =>
+      block.replace(/(--dnr-btn-hover-[\w-]+)\s*:[^;]*;/g, (declaration, name) =>
+        values.has(name) ? `${name}: ${values.get(name)};` : declaration,
+      ),
+    );
+  }
+
   #validateConfig() {
-    const { themes, components, colors = {} } = this.#configJson;
+    const { themes, components, colors = {}, hover } = this.#configJson;
 
     if (!Array.isArray(themes) || !themes.length) {
       throw new DonerError(`"themes" must be a non-empty array, the first one is the default`);
@@ -190,6 +211,15 @@ export default class DonerClass {
     for (const component of components) {
       if (!this.#exists(`src/components/${component}/index.css`)) {
         throw new DonerError(`Unknown component "${component}" - see src/components/`);
+      }
+    }
+    if (hover !== undefined) {
+      const presets = this.#exists("src/components/button/index.css") ? listHoverPresets(this.#root) : [];
+      if (!presets.includes(hover)) {
+        throw new DonerError(`"hover" must be one of ${presets.join(", ")}, got ${JSON.stringify(hover)}`);
+      }
+      if (!components.includes("button")) {
+        throw new DonerError(`"hover" needs the "button" component`);
       }
     }
     const { dark = {}, ...light } = colors;
