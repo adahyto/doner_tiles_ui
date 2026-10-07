@@ -77,7 +77,8 @@ export default class DonerClass {
 
   build() {
     const css = (this.#cssFiles + this.#cssColorVars).replace(/\/\*[\s\S]*?\*\//g, "");
-    return minifyCss(mergeRootBlocks(css));
+    // a layer lets any unlayered rule of the page override the library without specificity hacks
+    return minifyCss(`@layer doner{${mergeRootBlocks(css)}}`);
   }
 
   #loadConfig() {

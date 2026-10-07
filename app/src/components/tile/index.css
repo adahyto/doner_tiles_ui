@@ -1,12 +1,19 @@
 .dnr-tile {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     padding: 40px;
-
-    h2, h3, p {
-        margin: 0;
-    }
 }
 
 .dnr-tile-content {
     line-height: 1.6em;
     padding-top: 20px;
+}
+
+.dnr-tile-content > * {
+    margin: 0;
+}
+
+.dnr-tile-content > * + * {
+    margin-top: 1em;
 }

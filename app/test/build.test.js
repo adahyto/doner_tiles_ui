@@ -19,6 +19,11 @@ for (const theme of themes) {
   });
 }
 
+test("output is wrapped in @layer doner", () => {
+  const css = new Doner({ config: baseConfig }).build();
+  assert.ok(css.startsWith("@layer doner{") && css.endsWith("}"));
+});
+
 test("minifier keeps descendant combinators before pseudo-classes", () => {
   assert.equal(minifyCss(".a :is(h2, h3) { margin : 0 }"), ".a :is(h2,h3){margin :0}");
   assert.equal(minifyCss("p :first-child{x: 1}"), "p :first-child{x:1}");
