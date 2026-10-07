@@ -5,15 +5,15 @@
 Lightweight CSS library designed to help you build esthetic tile-based interfaces effortlessly.
 Check out the repo and add your themes to match your project or build tiles CSS excluding some components.
 
-Demo: https://adahyto.github.io/doner_tiles_ui/
+Demo: https://ui.doner.cloud/
 
 ## Install
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/doner-tiles-ui@2/styles/doner-tiles.css">
+<link rel="stylesheet" href="https://ui.doner.cloud/styles/doner-tiles.css">
 ```
 
-or `npm i doner-tiles-ui` and `import "doner-tiles-ui";` (all themes) / `import "doner-tiles-ui/styles/material-doner-tiles.css";` in a bundler.
+This address always serves the latest version. For a fixed version use `npm i doner-tiles-ui` and `import "doner-tiles-ui";` (all themes) / `import "doner-tiles-ui/styles/material-doner-tiles.css";` in a bundler.
 
 ## Quick start
 

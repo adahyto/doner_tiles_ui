@@ -6,6 +6,8 @@
   (was `neuromorphism`). Pages that relied on the default without `data-dnr-theme` change their look:
   add `data-dnr-theme="neuromorphism"` to `<html>` to keep it. The page needs `background: var(--dnr-page)`.
 - Demo opens with glassmorphism.
+- Demo for https://ui.doner.cloud: fonts served with the page, placeholder image drawn locally, script in
+  `app/demo.js` (strict CSP, no requests to other sites), footer with the privacy policy; README links there.
 
 ## 2.3.0
 
