@@ -9,6 +9,9 @@
 - Demo for https://ui.doner.cloud: fonts served with the page, placeholder image drawn locally, script in
   `app/demo.js` (strict CSP, no requests to other sites), footer with the privacy policy; README links there.
 - Demo: doner kebab favicon (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`).
+- Demo readability: the library tile comes first, code in `<pre>` blocks with a label and a Copy button
+  (long lines wrap), near-opaque code background, the single-theme CSS formatted and folded under
+  "Only one theme?", larger labels in the header. No change to `styles/`.
 
 ## 2.3.0
 

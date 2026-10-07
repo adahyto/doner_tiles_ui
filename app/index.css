@@ -47,7 +47,8 @@ body, h1, ul {
 body {
     /* demo-only shades derived from the theme, so they follow every theme and scheme */
     --demo-line: color-mix(in srgb, var(--dnr-text) 18%, transparent);
-    --demo-field: color-mix(in srgb, var(--dnr-text) 6%, var(--dnr-surface));
+    /* Canvas is white or near-black from the theme's color-scheme, tinted towards the text */
+    --demo-field: color-mix(in srgb, var(--dnr-text) 5%, Canvas);
     --demo-radius: min(var(--dnr-btn-radius), 12px);
     --demo-gutter: clamp(16px, 5vw, 60px);
     min-height: 100vh;
@@ -66,31 +67,87 @@ h1, h2, h3 {
     font-optical-sizing: auto;
 }
 
-p, a, span, button, label, select, input, output {
+p, a, span, button, label, select, input, output, summary {
     font-family: "Gothic A1", sans-serif;
 }
 
-ul {
-    list-style: none;
-    list-style-type: none;
-    padding: 0;
+/* code: near-opaque field, so the colorful page behind the glass never shows through the text */
+
+code {
+    font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .9em;
 }
 
-li + li {
-    margin-top: 30px;
-}
-
-textarea {
-    display: block;
-    max-height: 240px;
-    width: 100%;
-    padding: 15px 15px 0 15px;
-    field-sizing: content;
-    /* follow the tile instead of the browser's grey disabled field, in both schemes */
-    color: inherit;
+.code {
+    overflow: hidden;
+    color: var(--dnr-text);
     background-color: var(--demo-field);
     border: 1px solid var(--demo-line);
     border-radius: var(--demo-radius);
+}
+
+/* language on the left, Copy on the right, above the code, so the button never covers a line */
+.code__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 38px;
+    padding: 4px 6px 4px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    border-bottom: 1px solid var(--demo-line);
+}
+
+.code pre {
+    margin: 0;
+    padding: 12px 16px 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    /* long lines wrap instead of scrolling sideways, phones included */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.code pre code {
+    font-size: inherit;
+}
+
+.code--long {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.code--long:focus-visible {
+    outline: var(--dnr-focus-ring);
+    outline-offset: -3px;
+}
+
+.dnr-btn.code__copy {
+    min-width: 68px;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.theme-css summary {
+    cursor: pointer;
+    font-family: "Gothic A1", sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.theme-css summary span {
+    font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: .9em;
+}
+
+.theme-css summary:focus-visible {
+    outline: var(--dnr-focus-ring);
+    outline-offset: 2px;
+}
+
+.theme-css[open] summary {
+    margin-bottom: 1em;
 }
 
 /* header */
@@ -130,8 +187,8 @@ textarea {
 }
 
 .config-box__element label {
-    font-size: 12px;
-    opacity: .75;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .config-box select,
@@ -231,9 +288,12 @@ textarea {
     min-width: 0;
 }
 
-.hidden,
-li:has(> .hidden) {
-    display: none;
+.lead {
+    max-width: 60ch;
+    margin: 0 0 var(--demo-gutter);
+    font-family: "Gothic A1", sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
 }
 
 @media (min-width: 856px) {
@@ -267,9 +327,12 @@ li:has(> .hidden) {
 
 .footer a {
     color: inherit;
-    opacity: .8;
 }
 
 .dnr-tile-content + .dnr-tile-header {
     margin-top: 60px;
+}
+
+.theme-css p {
+    margin: 0 0 1em;
 }
