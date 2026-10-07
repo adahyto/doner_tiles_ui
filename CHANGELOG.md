@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.4.0
+
+- `glassmorphism` is the default theme of `doner-tiles.css` and of the generator's `config.json`
+  (was `neuromorphism`). Pages that relied on the default without `data-dnr-theme` change their look:
+  add `data-dnr-theme="neuromorphism"` to `<html>` to keep it. The page needs `background: var(--dnr-page)`.
+- Demo opens with glassmorphism.
+
 ## 2.3.0
 
 - Themes `glassmorphism` (frosted translucent tiles over a gradient page) and `minimal` (hairline borders,

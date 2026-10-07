@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import Doner, { listComponents, listThemes } from "./doner.js";
 
-export const DEFAULT_THEME = "neuromorphism";
+export const DEFAULT_THEME = "glassmorphism";
 
 export function stylesBuilds() {
   const components = listComponents();
