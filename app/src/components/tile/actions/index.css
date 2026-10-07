@@ -1,11 +1,13 @@
 .dnr-tile-actions {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 40px;
+    gap: calc(var(--dnr-space) / 2);
+    /* pins the actions to the bottom of a stretched tile, so buttons line up across a row */
+    margin-top: auto;
+    padding-top: var(--dnr-space);
 }
 
-@media(min-width: 856px) {
+@container (min-width: 480px) {
     .dnr-tile-actions {
         flex-direction: row;
         justify-content: end;

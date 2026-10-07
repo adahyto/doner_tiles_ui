@@ -4,6 +4,11 @@ body, h1, ul {
     margin: 0;
 }
 
+body {
+    color: var(--dnr-text);
+    background-color: var(--dnr-page);
+}
+
 h1, h2, h3, p, a, span, button {
     font-style: normal;
 }
@@ -53,10 +58,11 @@ textarea {
 .nav {
     width: 100%;
     position: fixed;
-    background-color: #ffffff;
+    z-index: 1;
+    background-color: var(--dnr-page);
     align-items: center;
     padding: 10px 20px;
-    border-bottom: .5px solid black;
+    border-bottom: .5px solid currentColor;
 }
 
 .config-box {
@@ -93,5 +99,6 @@ textarea {
 }
 
 
-
-
+.dnr-tile-content + .dnr-tile-header {
+    margin-top: 60px;
+}

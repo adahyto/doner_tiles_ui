@@ -1,4 +1,12 @@
-import Doner from "./doner.js";
+import Doner, { DonerError } from "./doner.js";
 
-const doner = new Doner();
-doner.init();
+try {
+  const doner = new Doner();
+  const file = doner.init();
+  for (const warning of doner.warnings) console.warn(`⚠️  ${warning}`);
+  console.log(`✅ ${file}`);
+} catch (err) {
+  if (!(err instanceof DonerError)) throw err;
+  console.error(`❌ ${err.message}`);
+  process.exitCode = 1;
+}

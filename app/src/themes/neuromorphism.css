@@ -1,0 +1,36 @@
+/* Soft extruded surfaces; the page background should be var(--dnr-page), equal to the tile surface. */
+[data-dnr-scheme="light"] {
+    color-scheme: light;
+    --dnr-page: #e6e8ee;
+    --dnr-surface: #e6e8ee;
+    --dnr-text: #1f2430;
+    --dnr-accent: #122446;
+    --dnr-accent-contrast: #ffffff;
+    --dnr-focus-ring: 3px solid var(--dnr-accent);
+    --dnr-space: clamp(20px, 5vw, 40px);
+    --dnr-radius: clamp(24px, 6vw, 50px);
+    --dnr-img-radius: clamp(24px, 6vw, 50px);
+    --dnr-tile-border: none;
+    --dnr-tile-shadow: 10px 10px 30px #b8bcc6, -10px -10px 30px #ffffff;
+    --dnr-btn-bg: transparent;
+    --dnr-btn-border: none;
+    --dnr-btn-radius: 50px;
+    --dnr-btn-shadow: 6px 6px 16px #b8bcc6, -6px -6px 16px #ffffff;
+    --dnr-btn-shadow-hover: 8px 8px 20px #b8bcc6, -8px -8px 20px #ffffff;
+    --dnr-btn-filter-hover: brightness(1.05);
+    --dnr-btn-accent-border: none;
+    --dnr-btn-accent-shadow-hover: 8px 8px 20px #b8bcc6, -8px -8px 20px #ffffff;
+}
+
+[data-dnr-scheme="dark"] {
+    color-scheme: dark;
+    --dnr-page: #2a2d34;
+    --dnr-surface: #2a2d34;
+    --dnr-text: #e6e8ee;
+    --dnr-accent: #9db8ff;
+    --dnr-accent-contrast: #0d1a33;
+    --dnr-tile-shadow: 10px 10px 30px #1c1e23, -10px -10px 30px #383c45;
+    --dnr-btn-shadow: 6px 6px 16px #1c1e23, -6px -6px 16px #383c45;
+    --dnr-btn-shadow-hover: 8px 8px 20px #1c1e23, -8px -8px 20px #383c45;
+    --dnr-btn-accent-shadow-hover: 8px 8px 20px #1c1e23, -8px -8px 20px #383c45;
+}

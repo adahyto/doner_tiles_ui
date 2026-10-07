@@ -1,10 +1,46 @@
 .dnr-btn {
-    font-size: .8em;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    font: inherit;
+    font-size: .875rem;
+    line-height: 1.2;
     padding: 15px 25px;
+    text-align: center;
     text-decoration: none;
     color: inherit;
+    background-color: var(--dnr-btn-bg);
+    border: var(--dnr-btn-border);
+    border-radius: var(--dnr-btn-radius);
+    box-shadow: var(--dnr-btn-shadow);
+    cursor: pointer;
+    transition: box-shadow .2s, filter .2s, transform .1s;
 }
 
 .dnr-btn:hover {
-    cursor: pointer;
+    box-shadow: var(--dnr-btn-shadow-hover);
+    filter: var(--dnr-btn-filter-hover, none);
+}
+
+.dnr-btn:focus-visible {
+    outline: var(--dnr-focus-ring);
+    outline-offset: 3px;
+}
+
+.dnr-btn:active {
+    transform: translateY(1px);
+}
+
+.dnr-btn:disabled,
+.dnr-btn[aria-disabled="true"] {
+    opacity: .5;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dnr-btn {
+        transition: none;
+    }
 }

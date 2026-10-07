@@ -1,0 +1,24 @@
+# Changelog
+
+## 2.0.0
+
+Breaking – see "Migrating from 1.x" in the README.
+
+- Themes are files of `--dnr-*` variables; components read only those variables.
+- Dark mode for every theme: follows the system, `data-dnr-scheme="dark|light"` on `<html>` forces it.
+- Several themes in one file, switched with `data-dnr-theme` on `<html>` or any element (`styles/doner-tiles.css`).
+- Tile actions switch to a row through a container query (tile width 480px) instead of the viewport width.
+- Spacing and radius scale with the screen (`clamp()`).
+- All CSS in `@layer doner`.
+- Buttons: keyboard focus ring, `:active`, `:disabled` / `aria-disabled`, `font: inherit`, work as `<a>`;
+  transitions respect `prefers-reduced-motion`.
+- Tiles: spacing between content elements instead of a margin reset, `box-sizing`, image without the baseline gap,
+  actions pinned to the bottom of stretched tiles.
+- Generator: `themes` array, `colors.surface`/`text`/`dark`, contrast warnings (WCAG AA), config validation
+  with exit code 1, works from any directory, fixed minifier (kept spaces before `:` in selectors).
+- npm package `doner-tiles-ui`, MIT license, CI.
+
+## 1.0.0
+
+- Tile and button components with neuromorphism, neobrutalism and material themes.
+- Node.js generator building a minified CSS file from `config.json`.

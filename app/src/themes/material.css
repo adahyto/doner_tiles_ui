@@ -1,0 +1,36 @@
+/* Flat cards with soft elevation shadows. */
+[data-dnr-scheme="light"] {
+    color-scheme: light;
+    --dnr-page: #f5f5f5;
+    --dnr-surface: #ffffff;
+    --dnr-text: #1f1f1f;
+    --dnr-accent: #122446;
+    --dnr-accent-contrast: #ffffff;
+    --dnr-focus-ring: 3px solid var(--dnr-accent);
+    --dnr-space: clamp(20px, 5vw, 40px);
+    --dnr-radius: 4px;
+    --dnr-img-radius: 4px;
+    --dnr-tile-border: none;
+    --dnr-tile-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    --dnr-btn-bg: transparent;
+    --dnr-btn-border: none;
+    --dnr-btn-radius: 4px;
+    --dnr-btn-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    --dnr-btn-shadow-hover: 0 4px 6px rgba(0, 0, 0, .12), 0 4px 6px rgba(0, 0, 0, .24);
+    --dnr-btn-filter-hover: brightness(1.05);
+    --dnr-btn-accent-border: none;
+    --dnr-btn-accent-shadow-hover: 0 4px 6px rgba(0, 0, 0, .12), 0 4px 6px rgba(0, 0, 0, .24);
+}
+
+[data-dnr-scheme="dark"] {
+    color-scheme: dark;
+    --dnr-page: #121212;
+    --dnr-surface: #1e1e1e;
+    --dnr-text: #e3e3e3;
+    --dnr-accent: #a8c7fa;
+    --dnr-accent-contrast: #062e6f;
+    --dnr-tile-shadow: 0 1px 3px rgba(0, 0, 0, .6), 0 1px 2px rgba(0, 0, 0, .8);
+    --dnr-btn-shadow: 0 1px 3px rgba(0, 0, 0, .6), 0 1px 2px rgba(0, 0, 0, .8);
+    --dnr-btn-shadow-hover: 0 4px 8px rgba(0, 0, 0, .6), 0 4px 6px rgba(0, 0, 0, .8);
+    --dnr-btn-accent-shadow-hover: 0 4px 8px rgba(0, 0, 0, .6), 0 4px 6px rgba(0, 0, 0, .8);
+}

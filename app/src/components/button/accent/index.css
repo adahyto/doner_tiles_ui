@@ -1,3 +1,9 @@
 .dnr-btn--accent {
-    color: var(--accent-color--contrast);
+    color: var(--dnr-accent-contrast);
+    background-color: var(--dnr-accent);
+    border: var(--dnr-btn-accent-border);
+}
+
+.dnr-btn--accent:hover {
+    box-shadow: var(--dnr-btn-accent-shadow-hover);
 }

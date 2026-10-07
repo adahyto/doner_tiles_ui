@@ -1,12 +1,18 @@
 {
-  "name": "doner_tiles_ui",
-  "version": "1.0.0",
-  "description": "",
+  "name": "doner-tiles-ui-generator",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Builds doner-tiles-ui CSS from config.json",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build:styles": "node build-styles.js",
+    "test": "node --test"
   },
   "author": "https://github.com/adahyto",
-  "license": "ISC"
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.17"
+  }
 }

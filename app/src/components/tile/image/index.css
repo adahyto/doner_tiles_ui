@@ -1,4 +1,7 @@
 .dnr-tile-img {
+    display: block;
     width: 100%;
-    margin-bottom: 40px;
+    height: auto;
+    margin-bottom: var(--dnr-space);
+    border-radius: var(--dnr-img-radius);
 }
