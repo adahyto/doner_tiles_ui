@@ -1,16 +1,9 @@
-// Demo page: theme, scheme, hover and color pickers, code boxes read from styles/
+// Demo page: theme, scheme, hover and color pickers, code blocks with Copy, theme CSS read from styles/
 const themeChangeInput = document.getElementById("themeChange");
 themeChangeInput.addEventListener("change", () => {
   document.documentElement.dataset.dnrTheme = themeChangeInput.value;
   syncColorInputs();
-  document
-    .querySelectorAll('.theme-code')
-    .forEach(themeEl => {
-      themeEl.classList.toggle(
-        'hidden',
-        themeEl.getAttribute('data-theme') !== themeChangeInput.value
-      );
-  });
+  showThemeCode();
 });
 
 const schemeChangeInput = document.getElementById("schemeChange");
@@ -76,23 +69,84 @@ const refreshPreview = () => {
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncColorInputs);
 syncColorInputs();
 
-// the code boxes show the built files from styles/, so they never drift from the library
-document.querySelectorAll(".theme-code").forEach(async (themeEl) => {
-  const response = await fetch(`styles/${themeEl.dataset.theme}-doner-tiles.css`);
-  themeEl.value = await response.text();
+// "Only one theme?" shows the built file from styles/ for the picked theme, so it never drifts from the library;
+// the minified file is spread over lines here to be readable, the colors picked above are written into it
+const themeCss = {};
+const themeDetails = document.querySelector(".theme-css");
+const themeCode = document.getElementById("themeCode");
+
+const formatCss = (css) => {
+  let out = "";
+  let depth = 0;
+  let quote = "";
+  const newline = () => "\n" + "  ".repeat(depth);
+  for (const ch of css) {
+    if (quote) {
+      out += ch;
+      if (ch === quote) quote = "";
+    } else if (ch === '"' || ch === "'") {
+      quote = ch;
+      out += ch;
+    } else if (ch === "{") {
+      depth++;
+      out += " {" + newline();
+    } else if (ch === ";") {
+      out += ";" + newline();
+    } else if (ch === "}") {
+      depth = Math.max(0, depth - 1);
+      out = out.trimEnd() + newline() + "}" + newline();
+    } else {
+      out += ch;
+    }
+  }
+  return out.replace(/\n\s*\n/g, "\n").trim() + "\n";
+};
+
+const showThemeCode = async () => {
+  const theme = themeChangeInput.value;
+  const file = `${theme}-doner-tiles.css`;
+  try {
+    themeCss[theme] ??= await fetch(`styles/${file}`).then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      return response.text();
+    });
+  } catch {
+    themeDetails.hidden = true;
+    return;
+  }
+  if (theme !== themeChangeInput.value) return;
+  let css = themeCss[theme];
+  // replace the whole current value of the light scheme (first occurrence), so every change lands in the code
   for (const name of ["--dnr-accent", "--dnr-accent-contrast"]) {
     const value = document.documentElement.style.getPropertyValue(name);
-    if (value) themeEl.value = themeEl.value.replace(new RegExp(`(${name}:)[^;}]*`), `$1${value}`);
+    if (value) css = css.replace(new RegExp(`(${name}:)[^;}]*`), `$1${value.replace(/[;{}$]/g, "")}`);
   }
-});
+  document.getElementById("themeFile").textContent = file;
+  themeCode.textContent = formatCss(css);
+  themeDetails.hidden = false;
+};
+showThemeCode();
 
 const changeCSSVariable = (name, value) => {
   document.documentElement.style.setProperty(name, value);
   refreshPreview();
-  // replace the whole current value of the light scheme (first occurrence), so every change lands in the code
-  const pattern = new RegExp(`(${name}:)[^;}]*`);
-  document
-    .querySelectorAll('.theme-code').forEach(themeEl => {
-      themeEl.value = themeEl.value.replace(pattern, `$1${value.replace(/[;{}$]/g, '')}`);
-    });
-}
+  showThemeCode();
+};
+
+// a Copy button on every code block (added here, so the page without JavaScript has no dead buttons)
+document.querySelectorAll(".code").forEach((block) => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "dnr-btn code__copy";
+  button.textContent = "Copy";
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(block.querySelector("code").textContent);
+      button.textContent = "Copied";
+    } catch {
+      button.textContent = "Select and copy";
+    }
+    setTimeout(() => (button.textContent = "Copy"), 2000);
+  });
+  block.querySelector(".code__bar").append(button);
+});

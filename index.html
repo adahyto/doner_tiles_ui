@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="app/index.css" />
   </head>
   <body>
-    <nav class="nav">
-      <h1>doner_tiles_ui <span aria-hidden="true">🥙</span></h1>
+    <header class="nav">
+      <h1>Doner Tiles UI <span aria-hidden="true">🥙</span></h1>
       <div class="config-box">
         <div class="config-box__element">
           <label for="themeChange">Theme</label>
@@ -59,67 +59,76 @@
           </span>
         </div>
       </div>
-    </nav>
-    <div class="container">
+    </header>
+    <main class="container">
+    <p class="lead">A small CSS library for tile layouts: 5 themes, light and dark, no JavaScript needed. Use the controls above, this page restyles live.</p>
     <div class="grid">
-      <section class="grid__element">
+      <section class="grid__element" aria-labelledby="about">
         <div class="dnr-tile">
+          <img
+            class="dnr-tile-img"
+            id="demoImage"
+            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22256%22%3E%3Crect%20width%3D%22512%22%20height%3D%22256%22%20fill%3D%22%23d9d9d9%22%2F%3E%3C%2Fsvg%3E"
+            alt="image placeholder 512x256"
+          />
           <div class="dnr-tile-header">
-            <h2>Quick start</h2>
+            <h2 id="about">Doner Tiles UI</h2>
+            <h3>Composable tiles CSS library generator</h3>
           </div>
           <div class="dnr-tile-content">
-            <p>Add the stylesheet (or <code>npm i doner-tiles-ui</code>) and use the code below.</p>
-            <div>
-              <textarea aria-label="Stylesheet link" disabled>
-&lt;link rel="stylesheet" href="https://ui.doner.cloud/styles/doner-tiles.css"&gt;
-              </textarea>
+            <p>Lightweight CSS library designed to help you build aesthetic tile-based interfaces effortlessly.</p>
+            <p>Check out the repo and add your themes to match your project or build tiles CSS excluding some components.</p>
+          </div>
+          <div class="dnr-tile-actions">
+            <a class="dnr-btn" href="https://buycoffee.to/alex161" target="_blank">Donate</a>
+            <a class="dnr-btn dnr-btn--accent" href="https://github.com/adahyto/doner_tiles_ui" target="_blank">Repository</a>
+          </div>
+        </div>
+      </section>
+      <section class="grid__element" aria-labelledby="quick-start">
+        <div class="dnr-tile">
+          <div class="dnr-tile-header">
+            <h2 id="quick-start">Quick start</h2>
+          </div>
+          <div class="dnr-tile-content">
+            <p>1. Add the stylesheet with all themes (or <code>npm i doner-tiles-ui</code>) and give the page <code>background: var(--dnr-page)</code>.</p>
+            <div class="code">
+              <div class="code__bar"><span>HTML</span></div>
+              <pre><code>&lt;link rel="stylesheet" href="https://ui.doner.cloud/styles/doner-tiles.css"&gt;</code></pre>
             </div>
-            <div>
-              <ul>
-                <li>
-                  <textarea aria-label="HTML markup" disabled>
-<div class="dnr-tile">
-  <img class="dnr-tile-img" src="" alt="" />
-  <div class="dnr-tile-header">
-    <h2></h2>
-    <h3></h3>
-  </div>
-  <div class="dnr-tile-content"></div>
-  <div class="dnr-tile-actions">
-    <button class="dnr-btn"></button>
-    <button class="dnr-btn dnr-btn--accent"></button>
-  </div>
-</div>
-               </textarea
-                  >
-                </li>
-                <li>
-                  <textarea aria-label="CSS for neuromorphism" class="theme-code hidden" data-theme="neuromorphism" id="neuromorphism" disabled></textarea>
-                </li>
-                <li>
-                  <textarea aria-label="CSS for neobrutalism" class="theme-code hidden" data-theme="neobrutalism" id="neobrutalism" disabled></textarea>
-                </li>
-                <li>
-                  <textarea aria-label="CSS for material" class="theme-code hidden" data-theme="material"  id="material" disabled></textarea>
-                </li>
-                <li>
-                  <textarea aria-label="CSS for glassmorphism" class="theme-code" data-theme="glassmorphism" id="glassmorphism" disabled></textarea>
-                </li>
-                <li>
-                  <textarea aria-label="CSS for minimal" class="theme-code hidden" data-theme="minimal" id="minimal" disabled></textarea>
-                </li>
-              </ul>
+            <p>2. Build tiles with these classes.</p>
+            <div class="code">
+              <div class="code__bar"><span>HTML</span></div>
+              <pre><code>&lt;div class="dnr-tile"&gt;
+  &lt;img class="dnr-tile-img" src="" alt="" /&gt;
+  &lt;div class="dnr-tile-header"&gt;
+    &lt;h2&gt;&lt;/h2&gt;
+    &lt;h3&gt;&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="dnr-tile-content"&gt;&lt;/div&gt;
+  &lt;div class="dnr-tile-actions"&gt;
+    &lt;button class="dnr-btn"&gt;&lt;/button&gt;
+    &lt;button class="dnr-btn dnr-btn--accent"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
+            <details class="theme-css" hidden>
+              <summary>Only one theme? Show <span id="themeFile">glassmorphism-doner-tiles.css</span></summary>
+              <p>The same styles for the theme picked above, with your accent colors.</p>
+              <div class="code">
+                <div class="code__bar"><span>CSS</span></div>
+                <pre class="code--long" tabindex="0" aria-label="Theme CSS"><code id="themeCode"></code></pre>
+              </div>
+            </details>
           </div>
           <div class="dnr-tile-header">
             <h2>Node.js usage</h2>
           </div>
           <div class="dnr-tile-content">
-            <ul>
-              <li>
-               <p>Update the config.json to set theme, colors and desired components.</p>
-               <textarea aria-label="config.json example" disabled>
-{
+            <p>1. Set themes, colors and components in <code>app/config.json</code>.</p>
+            <div class="code">
+              <div class="code__bar"><span>JSON</span></div>
+              <pre><code>{
   "themes": ["neobrutalism", "material"],
   "components": [
     "tile",
@@ -138,47 +147,19 @@
       "accentContrast": "#111111"
     }
   }
-}
-                </textarea>
-              </li>
-              <li>
-                <p>Run the script to build the minified css file.</p>
-                <textarea aria-label="Build commands" disabled>
-$ cd app
-$ npm run start
-                </textarea>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-      </section>
-      <section class="grid__element">
-        <div class="dnr-tile">
-          <img
-            class="dnr-tile-img"
-            id="demoImage"
-            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22512%22%20height%3D%22256%22%3E%3Crect%20width%3D%22512%22%20height%3D%22256%22%20fill%3D%22%23d9d9d9%22%2F%3E%3C%2Fsvg%3E"
-            alt="image placeholder 512x256"
-          />
-          <div class="dnr-tile-header">
-            <h2>Doner Tiles UI</h2>
-            <h3>
-              Composable tiles css library generator
-            </h3>
-          </div>
-          <div class="dnr-tile-content">
-            <p>Lightweight CSS library designed to help you build esthetic tile-based interfaces effortlessly.</p>
-            <p>Check out the repo and add your themes to match your project or build tiles CSS excluding some components.</p>
-          </div>
-          <div class="dnr-tile-actions">
-            <a class="dnr-btn" href="https://buycoffee.to/alex161" target="_blank">Donate</a>
-            <a class="dnr-btn dnr-btn--accent" href="https://github.com/adahyto/doner_tiles_ui" target="_blank">Repository</a>
+}</code></pre>
+            </div>
+            <p>2. Build the minified CSS file.</p>
+            <div class="code">
+              <div class="code__bar"><span>Shell</span></div>
+              <pre><code>cd app
+npm run start</code></pre>
+            </div>
           </div>
         </div>
       </section>
     </div>
-    </div>
+    </main>
 
     <footer class="footer">
       <a href="https://doner.cloud/">doner.cloud</a>
