@@ -34,6 +34,15 @@ test("every theme defines every variable the components use, in both schemes", (
   }
 });
 
+test("every theme declares the same variables, so none leaks in from the default theme on :root", () => {
+  const names = (theme) => {
+    const source = fs.readFileSync(path.join(APP_DIR, "src/themes", `${theme}.css`), "utf8");
+    return [...parseDeclarations(source.match(/\[data-dnr-scheme="light"\]\s*{([^}]*)}/)[1]).keys()].sort();
+  };
+  const [first, ...rest] = listThemes();
+  for (const theme of rest) assert.deepEqual(names(theme), names(first), `${theme} vs ${first}`);
+});
+
 test("default themes pass the contrast check", () => {
   const doner = new Doner({ config: { themes: listThemes(), components: listComponents() } });
   doner.build();
@@ -53,7 +62,9 @@ test("first theme is the default on :root, others only on their attribute, dark 
   assert.ok(css.startsWith("@layer doner{") && css.endsWith("}"));
   assert.match(css, /:root,\[data-dnr-theme="material"\]\{/);
   assert.match(css, /\}\[data-dnr-theme="neobrutalism"\]\{/);
-  assert.match(css, /@media \(prefers-color-scheme:dark\)\{:root:not\(\[data-dnr-scheme="light"\]\),/);
+  assert.match(css, /@media \(prefers-color-scheme:dark\)\{:root:not\(\[data-dnr-scheme="light"\]\):not\(\[data-dnr-theme\]\),/);
+  // the default dark block must not outrank another theme's light block on <html>
+  assert.match(css, /\}:root\[data-dnr-scheme="dark"\]:not\(\[data-dnr-theme\]\),/);
   assert.match(css, /:root\[data-dnr-scheme="dark"\] \[data-dnr-theme="neobrutalism"\]\{/);
   assert.doesNotMatch(css, /:root\[data-dnr-scheme="dark"\],:root\[data-dnr-scheme="dark"\]\[data-dnr-theme="neobrutalism"\]/);
 });

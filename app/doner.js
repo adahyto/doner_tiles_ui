@@ -129,10 +129,11 @@ export default class DonerClass {
 
     const themeAttr = `[data-dnr-theme="${theme}"]`;
     // data-dnr-scheme lives on <html>; the theme may sit on <html> or on any element inside it,
-    // and the default theme also applies to :root
+    // and the default theme also applies to :root; its dark block skips a :root with another theme,
+    // because :root:not(...) outranks that theme's light block and would leak into it
     const selectors = (condition = "") =>
       [
-        ...(isDefault ? [`:root${condition}`] : []),
+        ...(isDefault ? [condition ? `:root${condition}:not([data-dnr-theme])` : ":root"] : []),
         condition ? `:root${condition}${themeAttr}` : themeAttr,
         ...(condition ? [`:root${condition} ${themeAttr}`] : []),
       ].join(",");

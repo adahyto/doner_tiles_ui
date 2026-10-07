@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1
+
+- Dark mode in `styles/doner-tiles.css`: with another theme on `<html>`, the default theme's dark variables
+  no longer override it (neobrutalism got neuromorphism's soft shadows instead of its hard accent shadow).
+- Every theme declares the same variables (neobrutalism: `--dnr-btn-filter-hover: none`), checked by a test.
+- Demo: code boxes, labels and the nav border follow the theme in both schemes.
+
 ## 2.0.0
 
 Breaking – see "Migrating from 1.x" in the README.
