@@ -18,7 +18,7 @@ h1, h2, h3 {
     font-optical-sizing: auto;
 }
 
-p, a, span, button {
+p, a, span, button, label, select, input {
     font-family: "Gothic A1", sans-serif;
 }
 
@@ -38,6 +38,11 @@ textarea {
     box-sizing: border-box;
     padding: 15px 15px 0 15px;
     field-sizing: content;
+    /* follow the tile instead of the browser's grey disabled field, in both schemes */
+    color: inherit;
+    background-color: color-mix(in srgb, var(--dnr-text) 5%, var(--dnr-surface));
+    border: 1px solid color-mix(in srgb, var(--dnr-text) 20%, transparent);
+    border-radius: 6px;
 }
 
 .nav,
@@ -62,7 +67,7 @@ textarea {
     background-color: var(--dnr-page);
     align-items: center;
     padding: 10px 20px;
-    border-bottom: .5px solid currentColor;
+    border-bottom: 1px solid color-mix(in srgb, var(--dnr-text) 20%, transparent);
 }
 
 .config-box {
