@@ -4,7 +4,7 @@
     /* "fill" inverts the accent button */
     --dnr-btn-fill-color: var(--dnr-accent-contrast);
     --dnr-btn-fill-text: var(--dnr-accent);
-    color: var(--dnr-accent-contrast);
+    --dnr-btn-color: var(--dnr-accent-contrast);
     background-color: var(--dnr-accent);
     border: var(--dnr-btn-accent-border);
 }

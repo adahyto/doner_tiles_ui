@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.0
+
+- Generator: `"hover"` in `config.json` sets the default button hover (any `data-dnr-hover` value);
+  unknown values and a missing `button` component stop the build with an error.
+- Hover text color is a fifth variable, `--dnr-btn-hover-color`, so `fill` works as the default too;
+  the accent button's text color comes from `--dnr-btn-color`.
+
 ## 2.1.0
 
 - Button hover effects: `data-dnr-hover="shadow|lift|press|glow|ring|fill|none"` on `<html>`, a container

@@ -4,6 +4,8 @@
     --dnr-btn-hover-filter: var(--dnr-btn-filter-hover, none);
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 0%;
+    /* initial = unset, :hover keeps the button's own text color */
+    --dnr-btn-hover-color: initial;
     --dnr-btn-fill-color: var(--dnr-accent);
     box-sizing: border-box;
     display: inline-flex;
@@ -16,7 +18,7 @@
     padding: 15px 25px;
     text-align: center;
     text-decoration: none;
-    color: inherit;
+    color: var(--dnr-btn-color, inherit);
     background-color: var(--dnr-btn-bg);
     /* the "fill" preset grows this from the left */
     background-image: linear-gradient(var(--dnr-btn-fill-color), var(--dnr-btn-fill-color));
@@ -34,6 +36,7 @@
     filter: var(--dnr-btn-hover-filter);
     transform: var(--dnr-btn-hover-transform);
     background-size: var(--dnr-btn-hover-fill) 100%;
+    color: var(--dnr-btn-hover-color, var(--dnr-btn-color, inherit));
 }
 
 /* hover presets: data-dnr-hover on <html>, on a container or on one button (the button's own wins) */
@@ -43,6 +46,7 @@
     --dnr-btn-hover-filter: var(--dnr-btn-filter-hover, none);
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 :where([data-dnr-hover="lift"]) .dnr-btn,
@@ -51,6 +55,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: translateY(-3px);
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 :where([data-dnr-hover="press"]) .dnr-btn,
@@ -59,6 +64,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: scale(.96);
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 :where([data-dnr-hover="glow"]) .dnr-btn,
@@ -69,6 +75,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 :where([data-dnr-hover="ring"]) .dnr-btn,
@@ -77,6 +84,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 :where([data-dnr-hover="fill"]) .dnr-btn,
@@ -85,12 +93,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 100%;
-}
-
-/* the fill color comes from --dnr-btn-fill-color, the text takes the opposite color */
-:where([data-dnr-hover="fill"]) .dnr-btn:not([data-dnr-hover]):hover,
-.dnr-btn[data-dnr-hover="fill"]:hover {
-    color: var(--dnr-btn-fill-text, var(--dnr-accent-contrast));
+    --dnr-btn-hover-color: var(--dnr-btn-fill-text, var(--dnr-accent-contrast));
 }
 
 :where([data-dnr-hover="none"]) .dnr-btn,
@@ -99,6 +102,7 @@
     --dnr-btn-hover-filter: none;
     --dnr-btn-hover-transform: none;
     --dnr-btn-hover-fill: 0%;
+    --dnr-btn-hover-color: initial;
 }
 
 .dnr-btn:focus-visible {

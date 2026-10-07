@@ -4,7 +4,15 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
-import Doner, { DonerError, contrastRatio, listComponents, listThemes, minifyCss, parseDeclarations } from "../doner.js";
+import Doner, {
+  DonerError,
+  contrastRatio,
+  listComponents,
+  listHoverPresets,
+  listThemes,
+  minifyCss,
+  parseDeclarations,
+} from "../doner.js";
 import { stylesBuilds } from "../build-styles.js";
 
 const APP_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -129,12 +137,36 @@ test("package versions and CHANGELOG agree", () => {
   assert.equal(changelog.match(/^## (\S+)/m)[1], root.version);
 });
 
-test("every hover preset sets all four hover variables", () => {
+test("every hover preset sets all five hover variables", () => {
   const css = fs.readFileSync(path.join(APP_DIR, "src/components/button/index.css"), "utf8");
   const presets = [...css.matchAll(/\.dnr-btn\[data-dnr-hover="([\w-]+)"\]\s*{([^}]*)}/g)];
   assert.deepEqual(presets.map(([, name]) => name), ["shadow", "lift", "press", "glow", "ring", "fill", "none"]);
   for (const [, name, body] of presets) {
     const keys = [...parseDeclarations(body).keys()].sort();
-    assert.deepEqual(keys, ["--dnr-btn-hover-fill", "--dnr-btn-hover-filter", "--dnr-btn-hover-shadow", "--dnr-btn-hover-transform"], name);
+    assert.deepEqual(
+      keys,
+      ["--dnr-btn-hover-color", "--dnr-btn-hover-fill", "--dnr-btn-hover-filter", "--dnr-btn-hover-shadow", "--dnr-btn-hover-transform"],
+      name,
+    );
   }
+});
+
+test("config hover makes a preset the button default, data-dnr-hover still overrides it", () => {
+  const base = new Doner({ config: baseConfig }).build();
+  for (const hover of listHoverPresets()) {
+    const css = new Doner({ config: { ...baseConfig, hover } }).build();
+    const defaults = parseDeclarations(css.match(/\.dnr-btn\{([^}]*)\}/)[1]);
+    const preset = parseDeclarations(css.match(new RegExp(`\\.dnr-btn\\[data-dnr-hover="${hover}"\\]\\{([^}]*)\\}`))[1]);
+    for (const [name, value] of preset) assert.equal(defaults.get(name), value, `${hover} ${name}`);
+    // nothing outside the button's default block changes
+    const withoutDefaults = (text) => text.replace(/\.dnr-btn\{[^}]*\}/, "");
+    assert.equal(withoutDefaults(css), withoutDefaults(base), hover);
+  }
+  assert.equal(new Doner({ config: { ...baseConfig, hover: "shadow" } }).build(), base);
+});
+
+test("config hover must be a known preset and needs the button", () => {
+  assert.throws(() => new Doner({ config: { ...baseConfig, hover: "wobble" } }), /"hover" must be one of shadow, lift/);
+  assert.throws(() => new Doner({ config: { ...baseConfig, hover: 1 } }), DonerError);
+  assert.throws(() => new Doner({ config: { ...baseConfig, components: ["tile"], hover: "lift" } }), /needs the "button"/);
 });

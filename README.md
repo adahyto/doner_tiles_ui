@@ -83,9 +83,11 @@ Pick how buttons react to the pointer with `data-dnr-hover` on `<html>`, on a co
 | `fill` | the accent sweeps in from the left; the accent button inverts |
 | `none` | no change |
 
-Each value only sets four variables on the button, so you can also write your own:
-`--dnr-btn-hover-shadow`, `--dnr-btn-hover-transform`, `--dnr-btn-hover-filter` and `--dnr-btn-hover-fill`
-(`0%`–`100%`, width of the `--dnr-btn-fill-color` sweep). With `prefers-reduced-motion` buttons do not move.
+Without the attribute buttons use `hover` from [your build's config](#build-your-own-css) (`shadow` in the ready files).
+
+Each value only sets five variables on the button, so you can also write your own:
+`--dnr-btn-hover-shadow`, `--dnr-btn-hover-transform`, `--dnr-btn-hover-filter`, `--dnr-btn-hover-fill`
+(`0%`–`100%`, width of the `--dnr-btn-fill-color` sweep) and `--dnr-btn-hover-color` (`initial` keeps the text color). With `prefers-reduced-motion` buttons do not move.
 
 ## Variables
 
@@ -113,6 +115,7 @@ Requires Node.js 18.17+, no dependencies.
    {
      "themes": ["neobrutalism", "material"],
      "components": ["tile", "tile/header", "tile/image", "tile/actions", "button", "button/accent"],
+     "hover": "lift",
      "colors": {
        "accent": "#122446",
        "accentContrast": "#ffffff",
@@ -123,6 +126,8 @@ Requires Node.js 18.17+, no dependencies.
 
    - `themes` – files from `app/src/themes/`, the first one is the default,
    - `components` – folders from `app/src/components/`,
+   - `hover` (optional) – the default [button hover](#button-hover) (`shadow` when left out);
+     `data-dnr-hover` on the page still overrides it,
    - `colors` (optional) – `accent`, `accentContrast`, `surface`, `text`; `colors.dark` for the dark scheme.
      Colors below WCAG AA contrast (4.5:1) print a warning.
 2. Run:
