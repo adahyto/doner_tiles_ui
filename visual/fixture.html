@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- Page for the visual tests: only styles/doner-tiles.css, no web fonts or remote images, so screenshots are stable. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>doner-tiles-ui visual fixture</title>
+    <link rel="stylesheet" href="../styles/doner-tiles.css" />
+    <style>
+      body {
+        box-sizing: border-box;
+        min-height: 100vh;
+        margin: 0;
+        padding: 32px;
+        font-family: "DejaVu Sans", sans-serif;
+        color: var(--dnr-text);
+        background: var(--dnr-page);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1.4fr .8fr;
+        gap: 32px;
+        align-items: start;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="dnr-tile" id="tile">
+        <img
+          class="dnr-tile-img"
+          alt="placeholder"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='200'%3E%3Crect width='512' height='200' fill='%23808a9e'/%3E%3Ccircle cx='256' cy='100' r='60' fill='%23c3c9d6'/%3E%3C/svg%3E"
+        />
+        <div class="dnr-tile-header">
+          <h2>Tile title</h2>
+          <h3>Subtitle of the tile</h3>
+        </div>
+        <div class="dnr-tile-content">
+          <p>Content of the tile, a couple of lines of text to see the spacing and the text color on the surface.</p>
+          <p>Second paragraph.</p>
+        </div>
+        <div class="dnr-tile-actions">
+          <button class="dnr-btn" id="plain">Plain</button>
+          <button class="dnr-btn dnr-btn--accent" id="accent">Accent</button>
+        </div>
+      </div>
+      <div class="dnr-tile">
+        <div class="dnr-tile-header">
+          <h2>Narrow tile</h2>
+        </div>
+        <div class="dnr-tile-content">
+          <p>Without an image; actions stack under 480px of tile width.</p>
+        </div>
+        <div class="dnr-tile-actions">
+          <button class="dnr-btn">One</button>
+          <button class="dnr-btn" disabled>Disabled</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
