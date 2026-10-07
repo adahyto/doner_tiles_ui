@@ -12,6 +12,7 @@
 - Demo readability: the library tile comes first, code in `<pre>` blocks with a label and a Copy button
   (long lines wrap), near-opaque code background, the single-theme CSS formatted and folded under
   "Only one theme?", larger labels in the header. No change to `styles/`.
+- Demo header: a short tagline under the name replaces the sentence above the tiles.
 
 ## 2.3.0
 
