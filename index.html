@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav class="nav">
-      <h1>doner_tiles_ui <span>🥙</span></h1>
+      <h1>doner_tiles_ui <span aria-hidden="true">🥙</span></h1>
       <div class="config-box">
         <div class="config-box__element">
           <label for="themeChange">Theme</label>
@@ -28,16 +28,21 @@
           </select>
         </div>
         <div class="config-box__element">
-          <label for="colorChange">Accent color</label>
-          <input type="text" id="colorChange" value="#122446" />
+          <label for="colorChange">Accent</label>
+          <span class="config-box__color">
+            <input type="color" id="colorChange" value="#122446" />
+            <output for="colorChange">#122446</output>
+          </span>
         </div>
         <div class="config-box__element">
-          <label for="colorContrastChange">Accent contrast color</label>
-          <input type="text" id="colorContrastChange" value="#ffffff" />
+          <label for="colorContrastChange">Accent text</label>
+          <span class="config-box__color">
+            <input type="color" id="colorContrastChange" value="#ffffff" />
+            <output for="colorContrastChange">#ffffff</output>
+          </span>
         </div>
       </div>
     </nav>
-    <br /><br />
     <div class="container">
     <div class="grid">
       <section class="grid__element">
@@ -128,6 +133,7 @@ $ npm run start
         <div class="dnr-tile">
           <img
             class="dnr-tile-img"
+            id="demoImage"
             src="https://placehold.co/512x256"
             alt="image placeholder 512x256"
           />
@@ -176,12 +182,12 @@ $ npm run start
       });
 
       const colorChangeInput = document.getElementById("colorChange");
-      colorChangeInput.addEventListener("change", () => {
+      colorChangeInput.addEventListener("input", () => {
         changeCSSVariable("--dnr-accent", colorChangeInput.value);
       });
 
       const colorContrastChange = document.getElementById("colorContrastChange");
-      colorContrastChange.addEventListener("change", () => {
+      colorContrastChange.addEventListener("input", () => {
         changeCSSVariable("--dnr-accent-contrast", colorContrastChange.value);
       });
 
@@ -192,6 +198,23 @@ $ npm run start
           if (!document.documentElement.style.getPropertyValue(name)) {
             input.value = style.getPropertyValue(name).trim();
           }
+        }
+        refreshPreview();
+      };
+
+      // hex next to each color picker, and the placeholder image drawn in the accent colors of the current scheme
+      const demoImage = document.getElementById("demoImage");
+      const refreshPreview = () => {
+        for (const input of [colorChangeInput, colorContrastChange]) {
+          document.querySelector(`output[for="${input.id}"]`).value = input.value;
+        }
+        const style = getComputedStyle(document.documentElement);
+        const hex = (name) => style.getPropertyValue(name).trim().replace("#", "");
+        let [bg, fg] = [hex("--dnr-accent"), hex("--dnr-accent-contrast")];
+        // the dark scheme has a light accent, a big light block would glare there
+        if (style.colorScheme === "dark") [bg, fg] = [fg, bg];
+        if (/^[0-9a-f]{3,8}$/i.test(bg) && /^[0-9a-f]{3,8}$/i.test(fg)) {
+          demoImage.src = `https://placehold.co/512x256/${bg}/${fg}`;
         }
       };
       matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncColorInputs);
@@ -209,6 +232,7 @@ $ npm run start
 
       const changeCSSVariable = (name, value) => {
         document.documentElement.style.setProperty(name, value);
+        refreshPreview();
         // replace the whole current value of the light scheme (first occurrence), so every change lands in the code
         const pattern = new RegExp(`(${name}:)[^;}]*`);
         document

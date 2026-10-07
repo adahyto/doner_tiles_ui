@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body, h1, ul {
     margin: 0;
 }
 
 body {
+    /* demo-only shades derived from the theme, so they follow every theme and scheme */
+    --demo-line: color-mix(in srgb, var(--dnr-text) 18%, transparent);
+    --demo-field: color-mix(in srgb, var(--dnr-text) 6%, var(--dnr-surface));
+    --demo-radius: min(var(--dnr-btn-radius), 12px);
+    --demo-gutter: clamp(16px, 5vw, 60px);
     color: var(--dnr-text);
     background-color: var(--dnr-page);
 }
@@ -18,7 +27,7 @@ h1, h2, h3 {
     font-optical-sizing: auto;
 }
 
-p, a, span, button, label, select, input {
+p, a, span, button, label, select, input, output {
     font-family: "Gothic A1", sans-serif;
 }
 
@@ -33,76 +42,157 @@ li + li {
 }
 
 textarea {
+    display: block;
     max-height: 240px;
     width: 100%;
-    box-sizing: border-box;
     padding: 15px 15px 0 15px;
     field-sizing: content;
     /* follow the tile instead of the browser's grey disabled field, in both schemes */
     color: inherit;
-    background-color: color-mix(in srgb, var(--dnr-text) 5%, var(--dnr-surface));
-    border: 1px solid color-mix(in srgb, var(--dnr-text) 20%, transparent);
-    border-radius: 6px;
+    background-color: var(--demo-field);
+    border: 1px solid var(--demo-line);
+    border-radius: var(--demo-radius);
 }
 
-.nav,
-.config-box {
-    display: flex;
-}
-
-.nav,
-.grid {
-    gap: 60px;
-}
-
-.nav,
-.grid__element {
-    width: 100%;
-}
+/* header */
 
 .nav {
-    width: 100%;
-    position: fixed;
+    position: sticky;
+    top: 0;
     z-index: 1;
-    background-color: var(--dnr-page);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid color-mix(in srgb, var(--dnr-text) 20%, transparent);
+    justify-content: space-between;
+    gap: 12px 40px;
+    padding: 12px var(--demo-gutter);
+    background-color: color-mix(in srgb, var(--dnr-page) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--demo-line);
+}
+
+.nav h1 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    white-space: nowrap;
 }
 
 .config-box {
-    flex-direction: row;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 12px;
+}
+
+.config-box__element {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .config-box__element label {
     font-size: 12px;
-    display: block;
+    opacity: .75;
 }
 
-.container {
-    padding: 60px;
+.config-box select,
+.config-box__color {
+    height: 38px;
+    font-size: 14px;
+    color: inherit;
+    background-color: var(--demo-field);
+    border: 1px solid var(--demo-line);
+    border-radius: var(--demo-radius);
 }
- 
+
+.config-box select {
+    padding: 0 10px;
+}
+
+.config-box select:focus-visible,
+.config-box__color:focus-within {
+    outline: var(--dnr-focus-ring);
+    outline-offset: 2px;
+}
+
+.config-box__color {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 0 5px;
+}
+
+.config-box__color input {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--demo-line);
+    border-radius: calc(var(--demo-radius) / 2);
+    cursor: pointer;
+}
+
+.config-box__color input:focus {
+    outline: none;
+}
+
+.config-box__color input::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.config-box__color input::-webkit-color-swatch {
+    border: none;
+    border-radius: calc(var(--demo-radius) / 2);
+}
+
+.config-box__color input::-moz-color-swatch {
+    border: none;
+    border-radius: calc(var(--demo-radius) / 2);
+}
+
+.config-box__color output {
+    min-width: 7ch;
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+}
+
+/* page */
+
+.container {
+    padding: var(--demo-gutter);
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr;
+    gap: var(--demo-gutter);
+}
+
+.grid__element {
+    min-width: 0;
 }
 
 .hidden {
     display: none;
 }
 
-@media(min-width: 856px) { 
+@media (min-width: 856px) {
     .grid {
         grid-template-columns: 1fr 1fr;
-    }
-
-    textarea {
-        min-width: 400px;
+        align-items: start;
     }
 }
 
+@media (max-width: 600px) {
+    .config-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .config-box select {
+        width: 100%;
+    }
+}
 
 .dnr-tile-content + .dnr-tile-header {
     margin-top: 60px;
