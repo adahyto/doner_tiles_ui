@@ -14,8 +14,11 @@ body {
     --demo-field: color-mix(in srgb, var(--dnr-text) 6%, var(--dnr-surface));
     --demo-radius: min(var(--dnr-btn-radius), 12px);
     --demo-gutter: clamp(16px, 5vw, 60px);
+    min-height: 100vh;
     color: var(--dnr-text);
-    background-color: var(--dnr-page);
+    /* background, not background-color: --dnr-page may be a gradient (glassmorphism) */
+    background: var(--dnr-page);
+    background-attachment: fixed;
 }
 
 h1, h2, h3, p, a, span, button {
@@ -66,8 +69,9 @@ textarea {
     justify-content: space-between;
     gap: 12px 40px;
     padding: 12px var(--demo-gutter);
-    background-color: color-mix(in srgb, var(--dnr-page) 88%, transparent);
-    backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, var(--dnr-surface) 88%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--demo-line);
 }
 
@@ -191,7 +195,8 @@ textarea {
     min-width: 0;
 }
 
-.hidden {
+.hidden,
+li:has(> .hidden) {
     display: none;
 }
 

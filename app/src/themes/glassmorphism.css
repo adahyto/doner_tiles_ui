@@ -1,0 +1,45 @@
+/* Frosted translucent tiles; needs a colorful page behind them: background: var(--dnr-page) (a gradient). */
+[data-dnr-scheme="light"] {
+    color-scheme: light;
+    --dnr-page: linear-gradient(135deg, #a5b4fc 0%, #f0abfc 50%, #fdba74 100%);
+    --dnr-surface: rgba(255, 255, 255, .45);
+    --dnr-text: #1e1b4b;
+    --dnr-accent: #4338ca;
+    --dnr-accent-contrast: #ffffff;
+    --dnr-focus-ring: 3px solid var(--dnr-accent);
+    --dnr-space: clamp(20px, 5vw, 40px);
+    --dnr-radius: 20px;
+    --dnr-img-radius: 14px;
+    --dnr-tile-backdrop: blur(16px) saturate(160%);
+    --dnr-tile-border: 1px solid rgba(255, 255, 255, .6);
+    --dnr-tile-shadow: 0 8px 32px rgba(31, 38, 135, .18);
+    --dnr-btn-bg: rgba(255, 255, 255, .35);
+    --dnr-btn-border: 1px solid rgba(255, 255, 255, .6);
+    --dnr-btn-radius: 12px;
+    --dnr-btn-shadow: 0 2px 8px rgba(31, 38, 135, .12);
+    --dnr-btn-shadow-hover: 0 6px 20px rgba(31, 38, 135, .22);
+    --dnr-btn-filter-hover: brightness(1.05);
+    --dnr-btn-accent-border: 1px solid rgba(255, 255, 255, .35);
+    --dnr-btn-accent-shadow-hover: 0 6px 20px rgba(67, 56, 202, .4);
+}
+
+[data-dnr-scheme="dark"] {
+    color-scheme: dark;
+    --dnr-page:
+        radial-gradient(at 15% 10%, #5b21b6 0, transparent 50%),
+        radial-gradient(at 85% 25%, #0e7490 0, transparent 45%),
+        radial-gradient(at 50% 95%, #9d174d 0, transparent 50%),
+        #0b1020;
+    --dnr-surface: rgba(255, 255, 255, .07);
+    --dnr-text: #eceefb;
+    --dnr-accent: #a5b4fc;
+    --dnr-accent-contrast: #1e1b4b;
+    --dnr-tile-border: 1px solid rgba(255, 255, 255, .14);
+    --dnr-tile-shadow: 0 8px 32px rgba(0, 0, 0, .45);
+    --dnr-btn-bg: rgba(255, 255, 255, .08);
+    --dnr-btn-border: 1px solid rgba(255, 255, 255, .16);
+    --dnr-btn-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+    --dnr-btn-shadow-hover: 0 6px 20px rgba(0, 0, 0, .45);
+    --dnr-btn-accent-border: 1px solid rgba(255, 255, 255, .2);
+    --dnr-btn-accent-shadow-hover: 0 6px 24px rgba(165, 180, 252, .35);
+}

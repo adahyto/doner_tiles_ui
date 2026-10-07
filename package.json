@@ -1,8 +1,8 @@
 {
   "name": "doner-tiles-ui",
-  "version": "2.2.0",
-  "description": "Composable CSS tiles with neuromorphism, neobrutalism and material themes, dark mode included",
-  "keywords": ["css", "tiles", "cards", "ui", "neumorphism", "neobrutalism", "material", "dark-mode"],
+  "version": "2.3.0",
+  "description": "Composable CSS tiles with neuromorphism, neobrutalism, material, glassmorphism and minimal themes, dark mode included",
+  "keywords": ["css", "tiles", "cards", "ui", "neumorphism", "neobrutalism", "material", "glassmorphism", "minimal", "dark-mode"],
   "homepage": "https://adahyto.github.io/doner_tiles_ui/",
   "repository": {
     "type": "git",
