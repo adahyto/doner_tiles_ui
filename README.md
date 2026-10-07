@@ -70,7 +70,7 @@ glassmorphism (frosted glass needs something colorful behind it), and neuromorph
 has the tile color:
 
 ```css
-body { background: var(--dnr-page); color: var(--dnr-text); }
+body { min-height: 100vh; background: var(--dnr-page); color: var(--dnr-text); } /* min-height: a gradient would repeat under short pages */
 ```
 
 ## Button hover
@@ -177,3 +177,14 @@ cd app
 npm run build:styles   # rebuild styles/ (every component, every theme, theme colors)
 npm test               # checks that styles/ is up to date, themes are complete and the generator works
 ```
+
+Visual tests compare screenshots of every theme (light, dark, both forced) and every button hover with
+`visual/snapshots/`. Fonts and rendering differ between systems, so run them in the Playwright image that CI uses:
+
+```sh
+docker run --rm -v "$PWD":/repo -w /repo/visual -u "$(id -u):$(id -g)" -e HOME=/tmp \
+  mcr.microsoft.com/playwright:v1.63.0-noble sh -c "npm ci && npx playwright test"
+```
+
+After an intended change of the look, add `--update-snapshots` to `npx playwright test` and commit the new images.
+When CI fails, the `visual-report` artifact shows the expected, actual and diff images.

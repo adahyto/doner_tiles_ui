@@ -25,3 +25,23 @@ jobs:
       - name: Package contents
         if: matrix.node == 22
         run: npm pack --dry-run
+
+  # screenshots of every theme, scheme and button hover; same image as the one that made visual/snapshots
+  visual:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm ci
+        working-directory: visual
+      - run: npx playwright test
+        working-directory: visual
+        env:
+          CI: "true"
+      # expected, actual and diff images of failed screenshots: open with `npx playwright show-report`
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: visual-report
+          path: visual/playwright-report/
+          retention-days: 14
