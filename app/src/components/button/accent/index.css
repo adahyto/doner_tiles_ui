@@ -1,9 +1,10 @@
 .dnr-btn--accent {
+    /* the hover presets read the button's hover shadow, the accent button has its own */
+    --dnr-btn-shadow-hover: var(--dnr-btn-accent-shadow-hover);
+    /* "fill" inverts the accent button */
+    --dnr-btn-fill-color: var(--dnr-accent-contrast);
+    --dnr-btn-fill-text: var(--dnr-accent);
     color: var(--dnr-accent-contrast);
     background-color: var(--dnr-accent);
     border: var(--dnr-btn-accent-border);
-}
-
-.dnr-btn--accent:hover {
-    box-shadow: var(--dnr-btn-accent-shadow-hover);
 }

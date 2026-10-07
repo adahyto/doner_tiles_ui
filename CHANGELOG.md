@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+- Button hover effects: `data-dnr-hover="shadow|lift|press|glow|ring|fill|none"` on `<html>`, a container
+  or one button; each sets `--dnr-btn-hover-shadow|transform|filter|fill`, so custom effects need no new CSS.
+- Demo: hover picker in the header.
+
 ## 2.0.1
 
 - Dark mode in `styles/doner-tiles.css`: with another theme on `<html>`, the default theme's dark variables

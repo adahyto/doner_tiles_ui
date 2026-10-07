@@ -63,6 +63,30 @@ For the page background use `var(--dnr-page)` – neuromorphism only looks right
 body { background: var(--dnr-page); color: var(--dnr-text); }
 ```
 
+## Button hover
+
+Pick how buttons react to the pointer with `data-dnr-hover` on `<html>`, on a container or on a single button
+(the button's own attribute wins):
+
+```html
+<html data-dnr-hover="lift">
+<button class="dnr-btn" data-dnr-hover="glow">…</button>
+```
+
+| Value | Effect |
+| --- | --- |
+| `shadow` | the theme's hover shadow (default) |
+| `lift` | rises by 3px with the theme's hover shadow |
+| `press` | sinks in: inner shadow, scaled to 96% |
+| `glow` | soft halo in the accent color |
+| `ring` | accent ring around the button |
+| `fill` | the accent sweeps in from the left; the accent button inverts |
+| `none` | no change |
+
+Each value only sets four variables on the button, so you can also write your own:
+`--dnr-btn-hover-shadow`, `--dnr-btn-hover-transform`, `--dnr-btn-hover-filter` and `--dnr-btn-hover-fill`
+(`0%`–`100%`, width of the `--dnr-btn-fill-color` sweep). With `prefers-reduced-motion` buttons do not move.
+
 ## Variables
 
 Override any of them on `:root` or on the element with `data-dnr-theme`:

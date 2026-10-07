@@ -25,6 +25,8 @@ test("every theme defines every variable the components use, in both schemes", (
     // var(--x, fallback) is optional
     for (const [, name] of css.matchAll(/var\((--dnr-[\w-]+)\)/g)) used.add(name);
   }
+  // the button's own hover variables are set by the component, not by the themes
+  for (const name of used) if (/^--dnr-btn-(hover-|fill-color$)/.test(name)) used.delete(name);
   for (const theme of listThemes()) {
     const source = fs.readFileSync(path.join(APP_DIR, "src/themes", `${theme}.css`), "utf8");
     const light = parseDeclarations(source.match(/\[data-dnr-scheme="light"\]\s*{([^}]*)}/)[1]);
@@ -125,4 +127,14 @@ test("package versions and CHANGELOG agree", () => {
   const changelog = fs.readFileSync(path.join(APP_DIR, "..", "CHANGELOG.md"), "utf8");
   assert.equal(app.version, root.version);
   assert.equal(changelog.match(/^## (\S+)/m)[1], root.version);
+});
+
+test("every hover preset sets all four hover variables", () => {
+  const css = fs.readFileSync(path.join(APP_DIR, "src/components/button/index.css"), "utf8");
+  const presets = [...css.matchAll(/\.dnr-btn\[data-dnr-hover="([\w-]+)"\]\s*{([^}]*)}/g)];
+  assert.deepEqual(presets.map(([, name]) => name), ["shadow", "lift", "press", "glow", "ring", "fill", "none"]);
+  for (const [, name, body] of presets) {
+    const keys = [...parseDeclarations(body).keys()].sort();
+    assert.deepEqual(keys, ["--dnr-btn-hover-fill", "--dnr-btn-hover-filter", "--dnr-btn-hover-shadow", "--dnr-btn-hover-transform"], name);
+  }
 });
