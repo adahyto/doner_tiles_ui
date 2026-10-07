@@ -170,7 +170,14 @@ code {
 
 .nav h1 {
     font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.15;
     white-space: nowrap;
+}
+
+.brand__tagline {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--dnr-text) 80%, transparent);
 }
 
 .config-box {
@@ -286,14 +293,6 @@ code {
 
 .grid__element {
     min-width: 0;
-}
-
-.lead {
-    max-width: 60ch;
-    margin: 0 0 var(--demo-gutter);
-    font-family: "Gothic A1", sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.6;
 }
 
 @media (min-width: 856px) {
