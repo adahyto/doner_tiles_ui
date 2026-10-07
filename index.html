@@ -28,6 +28,18 @@
           </select>
         </div>
         <div class="config-box__element">
+          <label for="hoverChange">Hover</label>
+          <select id="hoverChange">
+            <option value="shadow">shadow</option>
+            <option value="lift">lift</option>
+            <option value="press">press</option>
+            <option value="glow">glow</option>
+            <option value="ring">ring</option>
+            <option value="fill">fill</option>
+            <option value="none">none</option>
+          </select>
+        </div>
+        <div class="config-box__element">
           <label for="colorChange">Accent</label>
           <span class="config-box__color">
             <input type="color" id="colorChange" value="#122446" />
@@ -179,6 +191,11 @@ $ npm run start
           delete document.documentElement.dataset.dnrScheme;
         }
         syncColorInputs();
+      });
+
+      const hoverChangeInput = document.getElementById("hoverChange");
+      hoverChangeInput.addEventListener("change", () => {
+        document.documentElement.dataset.dnrHover = hoverChangeInput.value;
       });
 
       const colorChangeInput = document.getElementById("colorChange");
