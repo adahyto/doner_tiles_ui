@@ -8,6 +8,7 @@
 - Demo opens with glassmorphism.
 - Demo for https://ui.doner.cloud: fonts served with the page, placeholder image drawn locally, script in
   `app/demo.js` (strict CSP, no requests to other sites), footer with the privacy policy; README links there.
+- Demo: doner kebab favicon (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`).
 
 ## 2.3.0
 
