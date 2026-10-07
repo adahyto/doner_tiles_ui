@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -62,7 +63,6 @@
                </textarea
                   >
                 </li>
-                <br>
                 <li>
                   <textarea class="theme-code" data-theme="neuromorphism" id="neuromorphism" disabled>
 .dnr-tile{padding:40px;h2,h3,p{margin:0;}}.dnr-tile-content{line-height:1.6em;padding-top:20px;}.dnr-tile-header{display:flex;flex-direction:column;}.dnr-tile-header *:not(:first-child){padding-top:10px;}.dnr-tile-img{width:100%;margin-bottom:40px;}.dnr-tile-actions{display:flex;flex-direction:column;gap:20px;padding-top:40px;}@media(min-width:856px){.dnr-tile-actions{flex-direction:row;justify-content:end;}}.dnr-btn{font-size:.8em;padding:15px 25px;text-decoration:none;color:inherit;}.dnr-btn:hover{cursor:pointer;}.dnr-btn--accent{color:var(--accent-color--contrast);}.dnr-tile{border-radius:var(--border-radius--std);box-shadow:var(--shadow--std);}.dnr-tile-img{border-radius:var(--border-radius--std);}.dnr-btn{border:none;border-radius:var(--border-radius--std);box-shadow:var(--shadow--std);background-color:transparent;}.dnr-btn:hover{box-shadow:var(--shadow--mvd);filter:brightness(1.05);}.dnr-btn--accent{background-color:var(--accent-color);color:var(--accent-color--contrast);}:root{--border-radius--std:50px;--shadow--std:10px 10px 30px #a7a7a7,-10px -10px 30px #e7e7e7;--shadow--mvd:12px 12px 25px #a7a7a7,-12px -12px 25px #e7e7e7;--accent-color:#122446;--accent-color--contrast:#ffffff;}
@@ -106,18 +106,16 @@
   "colors": {
     "accent": "#122446",
     "accentContrast": "#ffffff"
-  },
-  "variables": true,
-  "reset": true
+  }
 }
                 </textarea>
               </li>
-              <br>
               <li>
                 <p>Run the script to build the minified css file.</p>
                 <br>
                 <textarea disabled>
-$npm run start
+$ cd app
+$ npm run start
                 </textarea>
               </li>
             </ul>
@@ -148,7 +146,8 @@ $npm run start
           </div>
         </div>
       </section>
-    </main>
+    </div>
+    </div>
 
     <script>
       const themeChangeInput = document.getElementById("themeChange");
@@ -171,35 +170,21 @@ $npm run start
 
       const colorChangeInput = document.getElementById("colorChange");
       colorChangeInput.addEventListener("change", () => {
-        changeCSSString(`--accent-color:${colorChangeInput.defaultValue}`);
-        document.documentElement.style.setProperty(
-          `--accent-color`,
-          colorChangeInput.value
-        );
+        changeCSSVariable("--accent-color", colorChangeInput.value);
       });
 
       const colorContrastChange = document.getElementById("colorContrastChange");
       colorContrastChange.addEventListener("change", () => {
-        changeCSSString(`--accent-color--contrast:${colorContrastChange.defaultValue}`);
-        document.documentElement.style.setProperty(
-          `--accent-color--contrast`,
-          colorContrastChange.value
-        );
+        changeCSSVariable("--accent-color--contrast", colorContrastChange.value);
       });
 
-      const changeCSSString = (oldValue) => {
-        let newValue = '';
-        if (oldValue.includes('contrast')) {
-          const colorContrastChange = document.getElementById("colorContrastChange");
-          newValue = `--accent-color--contrast:${colorContrastChange.value}`;
-        } else {
-          const colorChangeInput = document.getElementById("colorChange");
-          newValue = `--accent-color:${colorChangeInput.value}`;
-        }
+      const changeCSSVariable = (name, value) => {
+        document.documentElement.style.setProperty(name, value);
+        // replace the whole current value, so every change (not only the first one) lands in the code
+        const pattern = new RegExp(`(:root\\{[^}]*${name}:)[^;}]*`);
         document
           .querySelectorAll('.theme-code').forEach(themeEl => {
-            const newThemeCss = themeEl.innerHTML.replace(oldValue, newValue);
-            themeEl.innerHTML = newThemeCss
+            themeEl.value = themeEl.value.replace(pattern, `$1${value.replace(/[;{}$]/g, '')}`);
           });
       }
     </script>
