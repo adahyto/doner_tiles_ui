@@ -63,7 +63,7 @@ test("low contrast colors produce a warning", () => {
   const doner = new Doner({ config: { ...baseConfig, colors: { accent: "#777", accentContrast: "#888" } } });
   doner.build();
   assert.equal(doner.warnings.length, 1);
-  assert.match(doner.warnings[0], /neuromorphism \(light\).*--dnr-accent-contrast #888/);
+  assert.match(doner.warnings[0], /glassmorphism \(light\).*--dnr-accent-contrast #888/);
   assert.equal(contrastRatio("#000000", "#ffffff").toFixed(0), "21");
 });
 

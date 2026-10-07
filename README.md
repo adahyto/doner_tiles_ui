@@ -19,8 +19,8 @@ or `npm i doner-tiles-ui` and `import "doner-tiles-ui";` (all themes) / `import 
 
 Use one of the ready-made files from `styles/`:
 
-- `doner-tiles.css` – all themes, `neuromorphism` is the default,
-- `<theme>-doner-tiles.css` – a single theme: `neuromorphism`, `neobrutalism`, `material`, `glassmorphism`, `minimal`.
+- `doner-tiles.css` – all themes, `glassmorphism` is the default (give the page `background: var(--dnr-page)`, see below),
+- `<theme>-doner-tiles.css` – a single theme: `glassmorphism`, `neuromorphism`, `neobrutalism`, `material`, `minimal`.
 
 ```html
 <div class="dnr-tile">
