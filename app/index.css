@@ -104,8 +104,28 @@ textarea {
     border-radius: var(--demo-radius);
 }
 
+/* native selects size and place their arrow differently in every browser (tiny in Safari),
+   so the arrow is drawn here: a chevron of two gradients in the text color */
 .config-box select {
-    padding: 0 10px;
+    appearance: none;
+    min-width: 8.5em;
+    padding: 0 36px 0 12px;
+    font-size: 15px;
+    line-height: 1.2;
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 15px) 50%;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+}
+
+.config-box select option {
+    color: var(--dnr-text);
+    background-color: var(--dnr-surface);
 }
 
 .config-box select:focus-visible,
