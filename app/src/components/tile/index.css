@@ -2,12 +2,19 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    /* lets the actions react to the tile width, not the viewport; the tile has to get its width from the layout */
+    container-type: inline-size;
+    padding: var(--dnr-space);
+    color: var(--dnr-text);
+    background-color: var(--dnr-surface);
+    border: var(--dnr-tile-border);
+    border-radius: var(--dnr-radius);
+    box-shadow: var(--dnr-tile-shadow);
 }
 
 .dnr-tile-content {
     line-height: 1.6em;
-    padding-top: 20px;
+    padding-top: calc(var(--dnr-space) / 2);
 }
 
 .dnr-tile-content > * {

@@ -2,5 +2,6 @@
     display: block;
     width: 100%;
     height: auto;
-    margin-bottom: 40px;
+    margin-bottom: var(--dnr-space);
+    border-radius: var(--dnr-img-radius);
 }

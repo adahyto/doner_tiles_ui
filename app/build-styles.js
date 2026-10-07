@@ -1,15 +1,28 @@
-// Rebuilds ../styles/<theme>-doner-tiles.css for every theme with components and colors from config.json
+// Rebuilds ../styles: one file per theme and doner-tiles.css with all themes (first one is the default),
+// always with every component and the themes' own colors, independent of config.json
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import Doner from "./doner.js";
+import Doner, { listComponents, listThemes } from "./doner.js";
 
-const appDir = path.dirname(fileURLToPath(import.meta.url));
-const stylesDir = path.join(appDir, "..", "styles");
-const config = JSON.parse(fs.readFileSync(path.join(appDir, "config.json"), "utf8"));
+export const DEFAULT_THEME = "neuromorphism";
 
-for (const theme of fs.readdirSync(path.join(appDir, "src/themes"))) {
-  const file = path.join(stylesDir, `${theme}-doner-tiles.css`);
-  fs.writeFileSync(file, new Doner({ config: { ...config, theme } }).build());
-  console.log(`✅ ${path.relative(process.cwd(), file)}`);
+export function stylesBuilds() {
+  const components = listComponents();
+  const themes = listThemes();
+  const all = [DEFAULT_THEME, ...themes.filter((t) => t !== DEFAULT_THEME)];
+  return [
+    ...themes.map((theme) => [`${theme}-doner-tiles.css`, { themes: [theme], components }]),
+    ["doner-tiles.css", { themes: all, components }],
+  ];
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const stylesDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "styles");
+  fs.mkdirSync(stylesDir, { recursive: true });
+  for (const [name, config] of stylesBuilds()) {
+    const file = path.join(stylesDir, name);
+    fs.writeFileSync(file, new Doner({ config }).build());
+    console.log(`✅ ${path.relative(process.cwd(), file)}`);
+  }
 }

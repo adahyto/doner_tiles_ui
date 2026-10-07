@@ -11,12 +11,21 @@
     text-align: center;
     text-decoration: none;
     color: inherit;
+    background-color: var(--dnr-btn-bg);
+    border: var(--dnr-btn-border);
+    border-radius: var(--dnr-btn-radius);
+    box-shadow: var(--dnr-btn-shadow);
     cursor: pointer;
     transition: box-shadow .2s, filter .2s, transform .1s;
 }
 
+.dnr-btn:hover {
+    box-shadow: var(--dnr-btn-shadow-hover);
+    filter: var(--dnr-btn-filter-hover, none);
+}
+
 .dnr-btn:focus-visible {
-    outline: 3px solid var(--accent-color);
+    outline: var(--dnr-focus-ring);
     outline-offset: 3px;
 }
 

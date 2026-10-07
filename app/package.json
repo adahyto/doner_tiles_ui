@@ -1,6 +1,6 @@
 {
   "name": "doner_tiles_ui",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -12,6 +12,6 @@
   "author": "https://github.com/adahyto",
   "license": "ISC",
   "engines": {
-    "node": ">=18"
+    "node": ">=18.17"
   }
 }

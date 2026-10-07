@@ -1,5 +1,5 @@
 {
-  "theme": "neuromorphism",
+  "themes": ["neuromorphism"],
   "components": [
     "tile",
     "tile/header",
