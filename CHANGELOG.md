@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0
+
+- Themes `glassmorphism` (frosted translucent tiles over a gradient page) and `minimal` (hairline borders,
+  no shadows), both with dark mode; in `doner-tiles.css` and as `styles/<theme>-doner-tiles.css`.
+- Tile variable `--dnr-tile-backdrop` (`backdrop-filter`), `none` in the other themes.
+- `--dnr-page` may be a gradient: set it with `background`, not `background-color`.
+- Demo: the new themes, the header takes the tile color.
+
 ## 2.2.0
 
 - Generator: `"hover"` in `config.json` sets the default button hover (any `data-dnr-hover` value);

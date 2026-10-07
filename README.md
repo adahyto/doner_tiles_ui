@@ -20,7 +20,7 @@ or `npm i doner-tiles-ui` and `import "doner-tiles-ui";` (all themes) / `import 
 Use one of the ready-made files from `styles/`:
 
 - `doner-tiles.css` – all themes, `neuromorphism` is the default,
-- `neuromorphism-doner-tiles.css`, `neobrutalism-doner-tiles.css`, `material-doner-tiles.css` – a single theme.
+- `<theme>-doner-tiles.css` – a single theme: `neuromorphism`, `neobrutalism`, `material`, `glassmorphism`, `minimal`.
 
 ```html
 <div class="dnr-tile">
@@ -44,6 +44,14 @@ Everything sits in `@layer doner`, so any rule of your page overrides the librar
 
 ## Themes and dark mode
 
+| Theme | Look |
+| --- | --- |
+| `neuromorphism` | soft extruded surfaces, the page has the tile color |
+| `neobrutalism` | hard borders and offset shadows in the accent color |
+| `material` | flat cards with soft elevation |
+| `glassmorphism` | frosted translucent tiles over a gradient page |
+| `minimal` | hairline borders, no shadows |
+
 The first theme of a build applies to the whole page. Any other theme in the file can be set on `<html>` or on any element:
 
 ```html
@@ -57,7 +65,9 @@ Dark mode follows the system. Force a scheme with `data-dnr-scheme` on `<html>`:
 <html data-dnr-scheme="dark">   <!-- or "light" -->
 ```
 
-For the page background use `var(--dnr-page)` – neuromorphism only looks right when the page has the tile color:
+For the page background use `var(--dnr-page)` with `background`, not `background-color` – it is a gradient in
+glassmorphism (frosted glass needs something colorful behind it), and neuromorphism only looks right when the page
+has the tile color:
 
 ```css
 body { background: var(--dnr-page); color: var(--dnr-text); }
@@ -101,6 +111,7 @@ Override any of them on `:root` or on the element with `data-dnr-theme`:
 | `--dnr-space` | tile padding and spacing |
 | `--dnr-radius`, `--dnr-img-radius`, `--dnr-btn-radius` | corner radius of tile, image, button |
 | `--dnr-tile-border`, `--dnr-tile-shadow` | tile border and shadow |
+| `--dnr-tile-backdrop` | `backdrop-filter` of the tile (frosted glass), `none` in most themes |
 | `--dnr-btn-bg`, `--dnr-btn-border`, `--dnr-btn-shadow`, `--dnr-btn-shadow-hover`, `--dnr-btn-filter-hover` | button |
 | `--dnr-btn-accent-border`, `--dnr-btn-accent-shadow-hover` | accent button |
 | `--dnr-focus-ring` | keyboard focus outline |

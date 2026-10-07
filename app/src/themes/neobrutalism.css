@@ -10,6 +10,7 @@
     --dnr-space: clamp(20px, 5vw, 40px);
     --dnr-radius: 0;
     --dnr-img-radius: 0;
+    --dnr-tile-backdrop: none;
     --dnr-tile-border: 2px solid var(--dnr-accent);
     --dnr-tile-shadow: 5px 5px 5px var(--dnr-accent);
     --dnr-btn-bg: transparent;

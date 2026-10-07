@@ -1,7 +1,7 @@
 {
   "name": "doner-tiles-ui-generator",
   "private": true,
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Builds doner-tiles-ui CSS from config.json",
   "main": "index.js",
   "type": "module",

@@ -1,0 +1,37 @@
+/* Hairline borders, no shadows, plenty of air. */
+[data-dnr-scheme="light"] {
+    color-scheme: light;
+    --dnr-page: #fafafa;
+    --dnr-surface: #ffffff;
+    --dnr-text: #18181b;
+    --dnr-accent: #18181b;
+    --dnr-accent-contrast: #ffffff;
+    --dnr-focus-ring: 2px solid var(--dnr-accent);
+    --dnr-space: clamp(20px, 4vw, 32px);
+    --dnr-radius: 12px;
+    --dnr-img-radius: 8px;
+    --dnr-tile-backdrop: none;
+    --dnr-tile-border: 1px solid #e4e4e7;
+    --dnr-tile-shadow: none;
+    --dnr-btn-bg: transparent;
+    --dnr-btn-border: 1px solid #e4e4e7;
+    --dnr-btn-radius: 8px;
+    --dnr-btn-shadow: none;
+    --dnr-btn-shadow-hover: inset 0 0 0 1px #a1a1aa;
+    --dnr-btn-filter-hover: none;
+    --dnr-btn-accent-border: 1px solid var(--dnr-accent);
+    --dnr-btn-accent-shadow-hover: 0 0 0 3px rgba(24, 24, 27, .15);
+}
+
+[data-dnr-scheme="dark"] {
+    color-scheme: dark;
+    --dnr-page: #09090b;
+    --dnr-surface: #111113;
+    --dnr-text: #fafafa;
+    --dnr-accent: #fafafa;
+    --dnr-accent-contrast: #18181b;
+    --dnr-tile-border: 1px solid #27272a;
+    --dnr-btn-border: 1px solid #27272a;
+    --dnr-btn-shadow-hover: inset 0 0 0 1px #52525b;
+    --dnr-btn-accent-shadow-hover: 0 0 0 3px rgba(250, 250, 250, .18);
+}

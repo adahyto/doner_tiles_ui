@@ -10,6 +10,9 @@
     border: var(--dnr-tile-border);
     border-radius: var(--dnr-radius);
     box-shadow: var(--dnr-tile-shadow);
+    /* frosted glass in glassmorphism, none elsewhere */
+    -webkit-backdrop-filter: var(--dnr-tile-backdrop);
+    backdrop-filter: var(--dnr-tile-backdrop);
 }
 
 .dnr-tile-content {
