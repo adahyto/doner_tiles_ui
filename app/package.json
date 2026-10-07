@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node doner.js"
+    "start": "node index.js"
   },
   "author": "https://github.com/adahyto",
   "license": "ISC"
