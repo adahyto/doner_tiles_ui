@@ -107,3 +107,11 @@ test("invalid config fails loudly", () => {
   }
   assert.doesNotThrow(() => new Doner({ config: { ...baseConfig, colors: { accent: "rgb(1 2 3 / 50%)", accentContrast: "white" } } }));
 });
+
+test("package versions and CHANGELOG agree", () => {
+  const root = JSON.parse(fs.readFileSync(path.join(APP_DIR, "..", "package.json"), "utf8"));
+  const app = JSON.parse(fs.readFileSync(path.join(APP_DIR, "package.json"), "utf8"));
+  const changelog = fs.readFileSync(path.join(APP_DIR, "..", "CHANGELOG.md"), "utf8");
+  assert.equal(app.version, root.version);
+  assert.equal(changelog.match(/^## (\S+)/m)[1], root.version);
+});

@@ -7,9 +7,17 @@ Check out the repo and add your themes to match your project or build tiles CSS 
 
 Demo: https://adahyto.github.io/doner_tiles_ui/
 
+## Install
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/doner-tiles-ui@2/styles/doner-tiles.css">
+```
+
+or `npm i doner-tiles-ui` and `import "doner-tiles-ui";` (all themes) / `import "doner-tiles-ui/styles/material-doner-tiles.css";` in a bundler.
+
 ## Quick start
 
-Add one of the ready-made files from `styles/`:
+Use one of the ready-made files from `styles/`:
 
 - `doner-tiles.css` – all themes, `neuromorphism` is the default,
 - `neuromorphism-doner-tiles.css`, `neobrutalism-doner-tiles.css`, `material-doner-tiles.css` – a single theme.
