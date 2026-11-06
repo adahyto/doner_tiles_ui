@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1
+
+- README: a picture of the five themes in light and dark (`docs/themes.png`, not in the package). No change to `styles/`.
+
 ## 2.4.0
 
 - `glassmorphism` is the default theme of `doner-tiles.css` and of the generator's `config.json`
