@@ -5,7 +5,11 @@
 Lightweight CSS library designed to help you build esthetic tile-based interfaces effortlessly.
 Check out the repo and add your themes to match your project or build tiles CSS excluding some components.
 
-Demo: https://ui.doner.cloud/
+One stylesheet, no JavaScript: tiles and buttons in five themes, each with a light and a dark scheme.
+
+[![The same tile in the five themes, light above and dark below: glassmorphism, neuromorphism, neobrutalism, material, minimal](https://raw.githubusercontent.com/adahyto/doner_tiles_ui/main/docs/themes.png)](https://ui.doner.cloud/)
+
+Demo, with a theme picker and a generator for your own build: https://ui.doner.cloud/
 
 ## Install
 
