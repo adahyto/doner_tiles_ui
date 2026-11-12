@@ -1,0 +1,38 @@
+/* A shop shelf label: white tiles on a grey-green shelf, a petrol accent, 12px corners and a hairline under
+   the tile instead of a soft shadow. Made for urlhub.cloud, where a set of links looks like a price tag. */
+[data-dnr-scheme="light"] {
+    color-scheme: light;
+    --dnr-page: #e9eeee;
+    --dnr-surface: #ffffff;
+    --dnr-text: #16212a;
+    --dnr-accent: #0f6670;
+    --dnr-accent-contrast: #ffffff;
+    --dnr-focus-ring: 3px solid var(--dnr-accent);
+    --dnr-space: clamp(16px, 4vw, 28px);
+    --dnr-radius: 12px;
+    --dnr-img-radius: 7px;
+    --dnr-tile-backdrop: none;
+    --dnr-tile-border: none;
+    --dnr-tile-shadow: 0 1px 0 #c6cfcf;
+    --dnr-btn-bg: #ffffff;
+    --dnr-btn-border: 1px solid #cfd8d8;
+    --dnr-btn-radius: 12px;
+    --dnr-btn-shadow: none;
+    --dnr-btn-shadow-hover: inset 0 0 0 1px var(--dnr-accent);
+    --dnr-btn-filter-hover: none;
+    --dnr-btn-accent-border: 1px solid var(--dnr-accent);
+    --dnr-btn-accent-shadow-hover: 0 0 0 3px rgba(15, 102, 112, .2);
+}
+
+[data-dnr-scheme="dark"] {
+    color-scheme: dark;
+    --dnr-page: #182024;
+    --dnr-surface: #232c30;
+    --dnr-text: #e6ecee;
+    --dnr-accent: #6cc6cc;
+    --dnr-accent-contrast: #0e1a1c;
+    --dnr-tile-shadow: none;
+    --dnr-btn-bg: #232c30;
+    --dnr-btn-border: 1px solid #34404a;
+    --dnr-btn-accent-shadow-hover: 0 0 0 3px rgba(108, 198, 204, .25);
+}
