@@ -1,8 +1,8 @@
 {
   "name": "doner-tiles-ui",
-  "version": "2.4.1",
-  "description": "Composable CSS tiles with neuromorphism, neobrutalism, material, glassmorphism and minimal themes, dark mode included",
-  "keywords": ["css", "tiles", "cards", "ui", "neumorphism", "neobrutalism", "material", "glassmorphism", "minimal", "dark-mode"],
+  "version": "2.5.0",
+  "description": "Composable CSS tiles with neuromorphism, neobrutalism, material, glassmorphism, minimal and pricetag themes, dark mode included",
+  "keywords": ["css", "tiles", "cards", "ui", "neumorphism", "neobrutalism", "material", "glassmorphism", "minimal", "pricetag", "dark-mode"],
   "homepage": "https://ui.doner.cloud/",
   "repository": {
     "type": "git",

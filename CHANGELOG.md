@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.5.0
+
+- Theme `pricetag`: a shop shelf label, white tiles on a grey-green shelf, petrol accent, 12px corners and a
+  hairline under the tile instead of a soft shadow; dark mode included. In `doner-tiles.css` and as
+  `styles/pricetag-doner-tiles.css`. Made for urlhub.cloud.
+- Demo: `pricetag` in the theme picker.
+
 ## 2.4.1
 
 - README: a picture of the five themes in light and dark (`docs/themes.png`, not in the package). No change to `styles/`.

@@ -5,7 +5,7 @@
 Lightweight CSS library designed to help you build esthetic tile-based interfaces effortlessly.
 Check out the repo and add your themes to match your project or build tiles CSS excluding some components.
 
-One stylesheet, no JavaScript: tiles and buttons in five themes, each with a light and a dark scheme.
+One stylesheet, no JavaScript: tiles and buttons in six themes, each with a light and a dark scheme.
 
 [![The same tile in the five themes, light above and dark below: glassmorphism, neuromorphism, neobrutalism, material, minimal](https://raw.githubusercontent.com/adahyto/doner_tiles_ui/main/docs/themes.png)](https://ui.doner.cloud/)
 
@@ -24,7 +24,7 @@ This address always serves the latest version. For a fixed version use `npm i do
 Use one of the ready-made files from `styles/`:
 
 - `doner-tiles.css` – all themes, `glassmorphism` is the default (give the page `background: var(--dnr-page)`, see below),
-- `<theme>-doner-tiles.css` – a single theme: `glassmorphism`, `neuromorphism`, `neobrutalism`, `material`, `minimal`.
+- `<theme>-doner-tiles.css` – a single theme: `glassmorphism`, `neuromorphism`, `neobrutalism`, `material`, `minimal`, `pricetag`.
 
 ```html
 <div class="dnr-tile">
@@ -55,6 +55,7 @@ Everything sits in `@layer doner`, so any rule of your page overrides the librar
 | `material` | flat cards with soft elevation |
 | `glassmorphism` | frosted translucent tiles over a gradient page |
 | `minimal` | hairline borders, no shadows |
+| `pricetag` | a shop shelf label: white tiles on a grey-green shelf, petrol accent ([urlhub.cloud](https://urlhub.cloud) uses it) |
 
 The first theme of a build applies to the whole page. Any other theme in the file can be set on `<html>` or on any element:
 
